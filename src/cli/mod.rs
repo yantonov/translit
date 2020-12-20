@@ -13,13 +13,12 @@ pub enum Command {
     Convert(Convert)
 }
 
-
 #[derive(Clap)]
 pub struct Convert {
-    #[clap(about = "token to convert")]
+    #[clap(about = "token to translate")]
     token: String,
 
-    #[clap(about = "schema")]
+    #[clap(about = "schemas: ala_lc|bgn_pcgn|bs_2979|gost_52290|gost_7034|icao_doc_9303|gost_779|ungegn_1987|mosmetro|scientific|telegram|wikipedia|yandex_maps|yandex_money")]
     schema: String,
 }
 

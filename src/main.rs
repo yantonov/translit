@@ -5,8 +5,9 @@ mod cli;
 fn entry_point() -> Result<(), String> {
     match cli::arguments().command() {
         Command::Convert(convert) => {
-            println!("{}", iuliia_rust::parse_by_schema_name(&convert.token(),
-                                                             &convert.schema()));
+            println!("{}", iuliia_rust::parse_by_schema_name(
+                &convert.token(),
+                &convert.schema()));
         }
     }
     Ok(())
