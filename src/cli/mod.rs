@@ -10,7 +10,10 @@ struct Opts {
 #[derive(Clap)]
 pub enum Command {
     #[clap(about = "transliterate given token", display_order = 0)]
-    Convert(Convert)
+    Convert(Convert),
+
+    #[clap(about = "list of available schemes", display_order = 0)]
+    ListSchemes(ListSchemes),
 }
 
 #[derive(Clap)]
@@ -18,9 +21,12 @@ pub struct Convert {
     #[clap(about = "token to translate")]
     token: String,
 
-    #[clap(about = "schemas: ala_lc|bgn_pcgn|bs_2979|gost_52290|gost_7034|icao_doc_9303|gost_779|ungegn_1987|mosmetro|scientific|telegram|wikipedia|yandex_maps|yandex_money")]
+    #[clap(about = "scheme")]
     schema: String,
 }
+
+#[derive(Clap)]
+pub struct ListSchemes {}
 
 impl Convert {
     pub fn token(&self) -> &String {
