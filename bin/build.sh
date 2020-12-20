@@ -6,8 +6,8 @@ cd ..
 
 EXECUTABLE_NAME="$(basename $(pwd))"
 
-cargo build
-
 TARGET="$(pwd)/target/debug/${EXECUTABLE_NAME}"
+
+cargo build
 
 echo "binary file is here: ${TARGET}"
