@@ -21,7 +21,7 @@ pub struct Convert {
     #[clap(about = "token to translate")]
     token: String,
 
-    #[clap(about = "scheme")]
+    #[clap(about = "scheme", short, long)]
     schema: String,
 }
 
