@@ -12,8 +12,8 @@ pub enum Command {
     #[clap(about = "transliterate given token", display_order = 0)]
     Convert(Convert),
 
-    #[clap(about = "list of available schemes", display_order = 0)]
-    ListSchemes(ListSchemes),
+    #[clap(about = "schemes commands", display_order = 0)]
+    Scheme(Scheme),
 }
 
 #[derive(Clap)]
@@ -26,7 +26,25 @@ pub struct Convert {
 }
 
 #[derive(Clap)]
-pub struct ListSchemes {}
+pub struct Scheme {
+    #[clap(subcommand)]
+    subcommand: SchemeSubcommand
+}
+
+impl Scheme {
+    pub fn subcommand(&self) -> &SchemeSubcommand {
+        &self.subcommand
+    }
+}
+
+#[derive(Clap)]
+pub enum SchemeSubcommand {
+    #[clap(about = "list of available schemas", display_order = 0)]
+    List(ListOfAvailableSchemes),
+}
+
+#[derive(Clap)]
+pub struct ListOfAvailableSchemes {}
 
 impl Convert {
     pub fn token(&self) -> &String {

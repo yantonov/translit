@@ -1,4 +1,4 @@
-use crate::cli::Command;
+use crate::cli::{Command, SchemeSubcommand};
 
 mod cli;
 
@@ -9,30 +9,34 @@ fn entry_point() -> Result<(), String> {
                 &convert.token(),
                 &convert.schema()));
         }
-        Command::ListSchemes(_) => {
-            let mut schemes = vec![
-                "ala_lc",
-                "ala_lc_alt",
-                "bgn_pcgn",
-                "bgn_pcgn_alt",
-                "bs_2979",
-                "bs_2979_alt",
-                "gost_52290",
-                "gost_7034",
-                "icao_doc_9303",
-                "gost_779",
-                "gost_779_alt",
-                "ungegn_1987",
-                "mosmetro",
-                "scientific",
-                "telegram",
-                "wikipedia",
-                "yandex_maps",
-                "yandex_money",
-            ];
-            schemes.sort();
-            for scheme in schemes.iter() {
-                println!("{}", scheme);
+        Command::Scheme(schema_command) => {
+            match schema_command.subcommand() {
+                SchemeSubcommand::List(_) => {
+                    let mut schemes = vec![
+                        "ala_lc",
+                        "ala_lc_alt",
+                        "bgn_pcgn",
+                        "bgn_pcgn_alt",
+                        "bs_2979",
+                        "bs_2979_alt",
+                        "gost_52290",
+                        "gost_7034",
+                        "icao_doc_9303",
+                        "gost_779",
+                        "gost_779_alt",
+                        "ungegn_1987",
+                        "mosmetro",
+                        "scientific",
+                        "telegram",
+                        "wikipedia",
+                        "yandex_maps",
+                        "yandex_money",
+                    ];
+                    schemes.sort();
+                    for scheme in schemes.iter() {
+                        println!("{}", scheme);
+                    }
+                }
             }
         }
     }
