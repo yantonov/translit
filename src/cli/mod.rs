@@ -67,5 +67,5 @@ impl Arguments {
 }
 
 pub fn arguments() -> Arguments {
-    return Arguments { args: Opts::parse() };
+    Arguments { args: Opts::parse() }
 }

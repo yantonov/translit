@@ -6,8 +6,8 @@ fn entry_point() -> Result<(), String> {
     match cli::arguments().command() {
         Command::Convert(convert) => {
             println!("{}", iuliia_rust::parse_by_schema_name(
-                &convert.token(),
-                &convert.schema()));
+                convert.token(),
+                convert.schema()));
         }
         Command::Scheme(schema_command) => {
             match schema_command.subcommand() {
@@ -32,7 +32,7 @@ fn entry_point() -> Result<(), String> {
                         "yandex_maps",
                         "yandex_money",
                     ];
-                    schemes.sort();
+                    schemes.sort_unstable();
                     for scheme in schemes.iter() {
                         println!("{}", scheme);
                     }
