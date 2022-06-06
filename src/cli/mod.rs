@@ -1,13 +1,13 @@
-use clap::{Clap, crate_version};
+use clap::Parser;
 
-#[derive(Clap)]
-#[clap(version = crate_version ! ())]
+#[derive(Parser)]
+#[clap(version)]
 struct Opts {
     #[clap(subcommand)]
     command: Command,
 }
 
-#[derive(Clap)]
+#[derive(Parser)]
 pub enum Command {
     #[clap(about = "transliterate given token", display_order = 0)]
     Convert(Convert),
@@ -16,16 +16,16 @@ pub enum Command {
     Scheme(Scheme),
 }
 
-#[derive(Clap)]
+#[derive(Parser)]
 pub struct Convert {
-    #[clap(about = "token to translate")]
+    #[clap(help = "token to translate")]
     token: String,
 
-    #[clap(about = "scheme", short, long)]
+    #[clap(help = "scheme", short, long)]
     schema: String,
 }
 
-#[derive(Clap)]
+#[derive(Parser)]
 pub struct Scheme {
     #[clap(subcommand)]
     subcommand: SchemeSubcommand
@@ -37,13 +37,13 @@ impl Scheme {
     }
 }
 
-#[derive(Clap)]
+#[derive(Parser)]
 pub enum SchemeSubcommand {
     #[clap(about = "list of available schemas", display_order = 0)]
     List(ListOfAvailableSchemes),
 }
 
-#[derive(Clap)]
+#[derive(Parser)]
 pub struct ListOfAvailableSchemes {}
 
 impl Convert {
