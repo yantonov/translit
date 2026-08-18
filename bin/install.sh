@@ -5,7 +5,7 @@ cd "$(dirname "$0")/.."
 
 cargo build --release
 
-EXECUTABLE_NAME="$(basename $(pwd))"
+EXECUTABLE_NAME="$(basename "$(pwd)")"
 
 TARGET_DIR="${HOME}/.local/bin"
 
@@ -19,4 +19,4 @@ fi
 
 cp "$(pwd)/target/release/${EXECUTABLE_NAME}" "${TARGET}"
 
-echo 'Installed to ${TARGET_DIR}'
+echo "Installed to ${TARGET_DIR}"
