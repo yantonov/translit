@@ -28,7 +28,7 @@ pub struct Convert {
 #[derive(Parser)]
 pub struct Scheme {
     #[clap(subcommand)]
-    subcommand: SchemeSubcommand
+    subcommand: SchemeSubcommand,
 }
 
 impl Scheme {
@@ -57,7 +57,7 @@ impl Convert {
 }
 
 pub struct Arguments {
-    args: Opts
+    args: Opts,
 }
 
 impl Arguments {
@@ -67,5 +67,7 @@ impl Arguments {
 }
 
 pub fn arguments() -> Arguments {
-    Arguments { args: Opts::parse() }
+    Arguments {
+        args: Opts::parse(),
+    }
 }
