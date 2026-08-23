@@ -1,7 +1,8 @@
+use crate::version::VERSION_WITH_COMMIT_HASH;
 use clap::Parser;
 
 #[derive(Parser)]
-#[clap(version)]
+#[clap(version = VERSION_WITH_COMMIT_HASH)]
 struct Opts {
     #[clap(subcommand)]
     command: Command,
@@ -14,6 +15,12 @@ pub enum Command {
 
     #[clap(about = "schemes commands", display_order = 0)]
     Scheme(Scheme),
+
+    #[clap(
+        about = "show the version and the commit hash of this binary",
+        display_order = 0
+    )]
+    Version,
 }
 
 #[derive(Parser)]

@@ -1,6 +1,7 @@
 use crate::cli::{Command, SchemeSubcommand};
 
 mod cli;
+mod version;
 
 fn entry_point() -> Result<(), String> {
     match cli::arguments().command() {
@@ -38,6 +39,9 @@ fn entry_point() -> Result<(), String> {
                 }
             }
         },
+        Command::Version => {
+            println!("{}", version::version_info());
+        }
     }
     Ok(())
 }
