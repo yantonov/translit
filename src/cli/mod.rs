@@ -14,7 +14,7 @@ pub enum Command {
     Convert(Convert),
 
     #[clap(about = "schemes commands", display_order = 0)]
-    Scheme(Scheme),
+    Schemes(Schemes),
 
     #[clap(
         about = "show the version and the commit hash of this binary",
@@ -33,19 +33,19 @@ pub struct Convert {
 }
 
 #[derive(Parser)]
-pub struct Scheme {
+pub struct Schemes {
     #[clap(subcommand)]
-    subcommand: SchemeSubcommand,
+    subcommand: SchemesSubcommand,
 }
 
-impl Scheme {
-    pub fn subcommand(&self) -> &SchemeSubcommand {
+impl Schemes {
+    pub fn subcommand(&self) -> &SchemesSubcommand {
         &self.subcommand
     }
 }
 
 #[derive(Parser)]
-pub enum SchemeSubcommand {
+pub enum SchemesSubcommand {
     #[clap(about = "list of available schemas", display_order = 0)]
     List(ListOfAvailableSchemes),
 }

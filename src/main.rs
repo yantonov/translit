@@ -1,4 +1,4 @@
-use crate::cli::{Command, SchemeSubcommand};
+use crate::cli::{Command, SchemesSubcommand};
 
 mod cli;
 mod version;
@@ -11,8 +11,8 @@ fn entry_point() -> Result<(), String> {
                 iuliia_rust::parse_by_schema_name(convert.token(), convert.schema())
             );
         }
-        Command::Scheme(schema_command) => match schema_command.subcommand() {
-            SchemeSubcommand::List(_) => {
+        Command::Schemes(schema_command) => match schema_command.subcommand() {
+            SchemesSubcommand::List(_) => {
                 let mut schemes = vec![
                     "ala_lc",
                     "ala_lc_alt",

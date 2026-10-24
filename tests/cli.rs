@@ -131,7 +131,7 @@ fn other_commands_still_work() {
         translit(&["convert", "Москва", "--schema", "wikipedia"])
     );
     assert!(
-        translit(&["scheme", "list"]).contains("wikipedia"),
-        "the scheme list is expected to mention wikipedia"
+        translit(&["schemes", "list"]).contains("wikipedia"),
+        "the schemes list is expected to mention wikipedia"
     );
 }
