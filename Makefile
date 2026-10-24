@@ -1,19 +1,32 @@
-.PHONY: help build run demo schemes test lint fmt outdated install check
+.PHONY: help help-all build run demo schemes test lint fmt outdated install check
 
 .DEFAULT_GOAL := help
 
 help:
-	@echo "Available targets:"
-	@echo "  build     cargo build"
-	@echo "  run       make run ARGS='schemes list'"
-	@echo "  demo      how to use bin/demo.sh (mosmetro schema)"
-	@echo "  schemes   list available transliteration schemas"
-	@echo "  test      run tests"
-	@echo "  lint      run clippy"
-	@echo "  fmt       check formatting"
-	@echo "  outdated  check for outdated dependencies (needs cargo-outdated)"
-	@echo "  install   release build, copy to ~/.local/bin"
-	@echo "  check     run fmt + lint + test"
+	@echo "Usage: make [target]"
+	@echo ""
+	@echo "  check    - Run fmt + lint + test"
+	@echo "  build    - Cargo build"
+	@echo "  run      - Run the binary (pass args via ARGS=...)"
+	@echo "  test     - Run tests"
+	@echo "  install  - Release build, copy to ~/.local/bin"
+	@echo ""
+	@echo "Run 'make help-all' for the full list, including internal targets."
+
+help-all:
+	@echo "Public targets:"
+	@echo "  check    - Run fmt + lint + test"
+	@echo "  build    - Cargo build"
+	@echo "  run      - Run the binary (pass args via ARGS=...)"
+	@echo "  test     - Run tests"
+	@echo "  install  - Release build, copy to ~/.local/bin"
+	@echo ""
+	@echo "Internal targets (typically called via check):"
+	@echo "  lint     - Run clippy"
+	@echo "  fmt      - Check formatting"
+	@echo "  schemes  - List available transliteration schemas"
+	@echo "  demo     - How to use bin/demo.sh (mosmetro schema)"
+	@echo "  outdated - Check for outdated dependencies (needs cargo-outdated)"
 
 target/debug/translit:
 	cargo build
