@@ -135,3 +135,30 @@ fn other_commands_still_work() {
         "the schemes list is expected to mention wikipedia"
     );
 }
+
+/// Every scheme gets a "scheme: <name>" header followed by the result,
+/// blocks are separated by an empty line and follow the schemes list order.
+#[test]
+fn convert_all_converts_with_every_scheme_in_order() {
+    let schemes: Vec<String> = translit(&["schemes", "list"])
+        .lines()
+        .map(str::to_string)
+        .collect();
+    let output = translit(&["convert", "Москва", "--all"]);
+    let blocks: Vec<&str> = output.split("\n\n").collect();
+    assert_eq!(schemes.len(), blocks.len(), "{}", output);
+
+    for (scheme, block) in schemes.iter().zip(blocks) {
+        let (header, result) = block
+            .split_once('\n')
+            .unwrap_or_else(|| panic!("unexpected block: {}", block));
+        assert_eq!(format!("scheme: {}", scheme), header);
+        assert_eq!(translit(&["convert", "Москва", "--schema", scheme]), result);
+    }
+}
+
+#[test]
+fn convert_needs_either_schema_or_all() {
+    usage_error(&["convert", "Москва"]);
+    usage_error(&["convert", "Москва", "--schema", "wikipedia", "--all"]);
+}

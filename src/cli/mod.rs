@@ -28,8 +28,11 @@ pub struct Convert {
     #[clap(help = "token to translate")]
     token: String,
 
-    #[clap(help = "scheme", short, long)]
-    schema: String,
+    #[clap(help = "scheme", short, long, required_unless_present = "all")]
+    schema: Option<String>,
+
+    #[clap(help = "convert with every scheme", long, conflicts_with = "schema")]
+    all: bool,
 }
 
 #[derive(Parser)]
@@ -58,8 +61,12 @@ impl Convert {
         &self.token
     }
 
-    pub fn schema(&self) -> &String {
-        &self.schema
+    pub fn schema(&self) -> Option<&String> {
+        self.schema.as_ref()
+    }
+
+    pub fn all(&self) -> bool {
+        self.all
     }
 }
 
