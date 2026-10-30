@@ -10,4 +10,4 @@ rust-version = "1.85"
 
 [dependencies]
 clap = { version = "4.6.7", features = ["derive"] }
-iuliia-rust = "0.1.0"
+iuliia-rust = "0.1.1"
